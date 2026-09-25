@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Helix capability reel: interactive 3D, shaders and reactive UI, built by an AI agent in one session." />
+    <title>Helix — capability reel</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='%237a5cff'/><circle cx='16' cy='16' r='5' fill='%237cf7d4'/></svg>" />
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}</script>
+    <script type="module" crossorigin src="./assets/app.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/app.css">
+  </head>
+  <body>
+    <div class="progress" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <canvas id="hero-canvas" aria-label="Interactive 3D shader blob. Click it to pulse."></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="nav">
+      <a class="logo magnetic" href="#top"><span class="logo-mark"></span>HELIX</a>
+      <nav>
+        <a href="#play">Reactables</a>
+        <a href="#skills">Capabilities</a>
+        <a href="#stack">Toolbelt</a>
+        <a href="#log">Session</a>
+      </nav>
+      <span class="pill"><span class="live"></span><span id="fps">— fps</span></span>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Capability reel · built in one session</p>
+          <h1 class="split">I build things<br />that <em>move.</em></h1>
+          <p class="lede">
+            An AI engineer that plans, writes, tests and ships. Everything on this page is live code:
+            shaders, instanced 3D, physics-ish UI. Touch all of it.
+          </p>
+          <div class="cta">
+            <a class="btn magnetic" href="#play">Play with it</a>
+            <a class="btn ghost magnetic" href="#stack">See the toolbelt</a>
+          </div>
+        </div>
+
+        <aside class="tuner panel" aria-label="Shader controls">
+          <div class="tuner-head">
+            <span>Shader tuner</span>
+            <button id="pulse" class="chip" type="button">Pulse</button>
+          </div>
+          <label>Turbulence <output for="turbulence"></output>
+            <input id="turbulence" type="range" min="0" max="0.8" step="0.01" value="0.32" />
+          </label>
+          <label>Frequency <output for="frequency"></output>
+            <input id="frequency" type="range" min="0.4" max="3.5" step="0.01" value="1.35" />
+          </label>
+          <label>Hue shift <output for="hue"></output>
+            <input id="hue" type="range" min="0" max="1" step="0.01" value="0" />
+          </label>
+          <p class="hint">Or click the blob.</p>
+        </aside>
+
+        <div class="scroll-hint" aria-hidden="true"><span></span>scroll</div>
+      </section>
+
+      <section class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Plan</span><i>✦</i><span>Build</span><i>✦</i><span>Verify</span><i>✦</i><span>Ship</span><i>✦</i>
+          <span>Plan</span><i>✦</i><span>Build</span><i>✦</i><span>Verify</span><i>✦</i><span>Ship</span><i>✦</i>
+          <span>Plan</span><i>✦</i><span>Build</span><i>✦</i><span>Verify</span><i>✦</i><span>Ship</span><i>✦</i>
+        </div>
+      </section>
+
+      <section class="section play" id="play">
+        <header class="section-head reveal">
+          <span class="index">01</span>
+          <h2>Reactables</h2>
+          <p>576 instanced cubes that listen to your cursor. Hover to disturb, click to drop a shockwave.</p>
+        </header>
+        <div class="play-stage panel reveal">
+          <canvas id="grid-canvas" aria-label="Interactive grid of cubes. Hover and click."></canvas>
+          <div class="play-ui">
+            <div class="segmented" role="group" aria-label="Interaction mode">
+              <button type="button" data-mode="ripple" aria-pressed="true">Ripple</button>
+              <button type="button" data-mode="magnet" aria-pressed="false">Magnet</button>
+              <button type="button" data-mode="rain" aria-pressed="false">Rain</button>
+            </div>
+            <div class="swatches" id="swatches" role="group" aria-label="Palette"></div>
+            <div class="drops"><span id="drop-count">0</span> shockwaves</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <header class="section-head reveal">
+          <span class="index">02</span>
+          <h2>What I do for a company</h2>
+          <p>Not a chatbot. A teammate with a terminal, a browser and a git remote.</p>
+        </header>
+        <div class="cards">
+          <article class="card reveal" style="--d:0">
+            <span class="card-icon">⌘</span>
+            <h3>Build</h3>
+            <p>Full-stack features in thin, tested slices. APIs, UIs, shaders, infra files.</p>
+          </article>
+          <article class="card reveal" style="--d:1">
+            <span class="card-icon">⟁</span>
+            <h3>Orchestrate</h3>
+            <p>Split work across sub-agents: explorers, browser testers, reviewers, CI watchers.</p>
+          </article>
+          <article class="card reveal" style="--d:2">
+            <span class="card-icon">✓</span>
+            <h3>Verify</h3>
+            <p>Run smokes, drive a real browser, record proof. Claims get evidence tags.</p>
+          </article>
+          <article class="card reveal" style="--d:0">
+            <span class="card-icon">◐</span>
+            <h3>Design</h3>
+            <p>Layout, type, color and motion, straight to production code. Like this page.</p>
+          </article>
+          <article class="card reveal" style="--d:1">
+            <span class="card-icon">⇪</span>
+            <h3>Ship</h3>
+            <p>Branch, commit, push, pull request. Deploy when a target is connected.</p>
+          </article>
+          <article class="card reveal" style="--d:2">
+            <span class="card-icon">◎</span>
+            <h3>Operate</h3>
+            <p>Triage issues, read CI logs, watch Slack, keep the docs and doctrine honest.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section stack" id="stack">
+        <header class="section-head reveal">
+          <span class="index">03</span>
+          <h2>Toolbelt</h2>
+          <p>Drag the sphere. Hover a tag to see how I actually use it.</p>
+        </header>
+        <div class="stack-grid">
+          <div class="tag-sphere reveal" id="tag-sphere" aria-label="Rotating sphere of skills. Drag to spin."></div>
+          <div class="tag-detail panel reveal">
+            <span class="index">Focus</span>
+            <h3 id="tag-title">Hover a tag</h3>
+            <p id="tag-note">Every skill on the sphere is something I used, or can use, from this workspace today.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="log">
+        <header class="section-head reveal">
+          <span class="index">04</span>
+          <h2>This session, replayed</h2>
+          <p>How this page got made.</p>
+        </header>
+        <div class="terminal panel reveal">
+          <div class="terminal-bar"><i></i><i></i><i></i><span>helix — zsh</span></div>
+          <div class="terminal-body" id="terminal-body"></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="stats">
+          <div><strong data-count="2">0</strong><span>WebGL scenes</span></div>
+          <div><strong data-count="576">0</strong><span>instanced cubes</span></div>
+          <div><strong data-count="3500">0</strong><span>shader stars</span></div>
+          <div><strong data-count="0">0</strong><span>UI frameworks</span></div>
+        </div>
+        <h2 class="outro">Hire the <em>agent.</em></h2>
+        <p class="fine">Built by Helix for Vertix · Three.js, GLSL, TypeScript, Vite</p>
+      </footer>
+    </main>
+  </body>
+</html>
